@@ -13,7 +13,7 @@ class Point
 public:
 	Point (float a = 0, float b = 0) : x(a), y(b) {}
 virtual
-	~Point () {cout << "executing Point destructor" << endl;}
+	~Point () {cout << "executing Point destructor" << endl;}//Point的析构函数
 protected:
 	float x;
 	float y;
@@ -21,7 +21,7 @@ protected:
 class Circle : public Point
 {
 public:
-	Circle (float a = 0, float b = 0, float r = 0) : Point(a,b), radius(r) {}
+	Circle (float a = 0, float b = 0, float r = 0) : Point(a,b), radius(r) {}//Circle的析构函数
 	virtual ~Circle () {cout << "executing Circle destructor" << endl;}
 protected:
 	float radius;
