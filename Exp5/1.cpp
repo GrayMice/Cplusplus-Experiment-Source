@@ -5,22 +5,38 @@
 */
 
 #include <iostream>
-#include <iomanip>
 #include <cmath>
 using namespace std;
 
-int main()
+int main ()
 {
-	float a, b, c, s, area;	//定义所需变量
-	cout << "Please input a, b and c:" << endl;
-	cin >> a >> b >> c;
-	if (!(a + b > c && b + c > a && c + a > b))//判断是否输入正确
+	double triangle (double, double, double);
+	double a, b, c;
+	flag:	//使用flag来让catch之后的程序继续执行。
+		cout << "Please input a,b,c:" << endl;
+	cin >> a >> b >> c;	//入口
+	try	//try部分，正常调用
 	{
-		cerr << "Error! Two sides is greater than the third side !" << endl;//输出错误提示
-		exit (EXIT_FAILURE);
+		while (a > 0 && b > 0 && c > 0)	//循环输入内容部分，仅在均正确情况下。
+		{
+			cout << "The answer is: " << triangle(a,b,c) << endl;
+			cout << "Please input a,b,c:" << endl;
+			cin >> a >> b >> c;
+		}
 	}
-	s = (a + b + c) / 2;
-	area = sqrt(s * (s - a) * (s - b) * (s - c));//计算面积
-	cout << "The area is : " << area << endl;	//输出计算结果
+	catch (double)	//异常catch
+	{
+		cerr << "This is not a triangle! Please try again." << endl;	//输出错误信息.
+		goto flag;	//跳转到flag
+	}
+	cout << "Done" << endl;
 	return EXIT_SUCCESS;
+}
+
+double triangle (double a, double b, double c)
+{
+	double s = (a + b + c) / 2;
+	if (!(a+b>c && b+c>a &&a+c>b))
+		throw a;	//当不满足条件的时候抛出异常
+	return sqrt(s*(s-a)*(s-b)*(s-c));	//正常，返回面积
 }
