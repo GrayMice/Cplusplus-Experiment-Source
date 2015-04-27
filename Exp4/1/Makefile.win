@@ -4,14 +4,14 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o pcc.o
-LINKOBJ  = main.o pcc.o
-LIBS     = -L"E:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"E:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc -g3
+OBJ      = main.o point.o circle.o cylinder.o
+LINKOBJ  = main.o point.o circle.o cylinder.o
+LIBS     = -L"E:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"E:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"E:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"E:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"E:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"E:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"E:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"E:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"E:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
 BIN      = 1.exe
-CXXFLAGS = $(CXXINCS) -g3
-CFLAGS   = $(INCS) -g3
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
 RM       = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
@@ -27,5 +27,11 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
-pcc.o: pcc.cpp
-	$(CPP) -c pcc.cpp -o pcc.o $(CXXFLAGS)
+point.o: point.cpp
+	$(CPP) -c point.cpp -o point.o $(CXXFLAGS)
+
+circle.o: circle.cpp
+	$(CPP) -c circle.cpp -o circle.o $(CXXFLAGS)
+
+cylinder.o: cylinder.cpp
+	$(CPP) -c cylinder.cpp -o cylinder.o $(CXXFLAGS)
