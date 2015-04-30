@@ -10,15 +10,16 @@ using namespace std;
 
 int main ()
 {
+	int exFlag = 0;	//设立退出flag来检验是否异常退出，初值为0
 	double triangle (double, double, double);
 	double a, b, c;
-	flag:	//使用flag来让catch之后的程序继续执行。
-		cout << "Please input a,b,c:" << endl;
+	cout << "Please input a,b,c:" << endl;
 	cin >> a >> b >> c;	//入口
 	try	//try部分，正常调用
 	{
 		while (a > 0 && b > 0 && c > 0)	//循环输入内容部分，仅在均正确情况下。
 		{
+			
 			cout << "The answer is: " << triangle(a,b,c) << endl;
 			cout << "Please input a,b,c:" << endl;
 			cin >> a >> b >> c;
@@ -26,11 +27,16 @@ int main ()
 	}
 	catch (double)	//异常catch
 	{
-		cerr << "This is not a triangle! Please try again." << endl;	//输出错误信息.
-		goto flag;	//跳转到flag
+		cerr << "This is not a triangle!" << endl;	//输出错误信息.
+		exFlag = 1;	//异常出现，改变值
 	}
 	cout << "Done" << endl;
-	return EXIT_SUCCESS;
+
+	if (exFlag)
+		return EXIT_FAILURE;//异常退出
+	else
+		return EXIT_SUCCESS;//正常退出
+
 }
 
 double triangle (double a, double b, double c)
